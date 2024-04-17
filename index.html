@@ -134,7 +134,7 @@
             /* background-color: #120e0e; */
         }
 
-        #searchInput {
+        /* #searchInput {
             height: 4.3rem;
             width: 20rem;
             font-size: 2.5rem;
@@ -147,9 +147,9 @@
             background: linear-gradient(45deg, #e8622b, #e3b04c);
             color: white;
 
-        }
+        } */
 
-        #searchButton {
+        /* #searchButton {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -161,10 +161,10 @@
             background-color: #e4a648;
             width: 20rem;
             height: 4.5rem;
-        }
+        } */
 
         #playlistSelect {
-            margin-right: 120px;
+            /* margin-right: 120px; */
             height: 4.5rem;
             width: 23rem;
             font-size: 2.5rem;
@@ -177,7 +177,7 @@
 
         }
 
-        #mag {
+        /* #mag {
             margin-right: 5px;
             margin-left: 5px;
             font-size: 2.5rem;
@@ -186,7 +186,7 @@
 
         #searchButton:hover {
             border: 2px solid #ffffff;
-        }
+        } */
 
         .logo {
             display: flex;
@@ -208,7 +208,7 @@
             width: 170px;
         }
 
-        #suggestionBox {
+        /* #suggestionBox {
             margin-top: 14rem;
             margin-left: 22rem;
             display: none;
@@ -232,7 +232,7 @@
         .suggestion:hover {
             background: linear-gradient(45deg, #e8622b, #e3b04c);
         }
-
+ */
 
 
 
@@ -273,9 +273,9 @@
 
 
 
-        <input type="text" id="searchInput" placeholder="Search Aarti">
+        <!-- <input type="text" id="searchInput" placeholder="Search Aarti">
         <button id="searchButton"><i id="mag" class="fa-solid fa-magnifying-glass"></i></button>
-        <div id="suggestionBox"></div>
+        <div id="suggestionBox"></div> -->
 
     </div>
     <div class="c1">
@@ -357,81 +357,81 @@
             playNext();
         });
 
-        // Search functionality
-        document.getElementById('searchButton').addEventListener('click', performSearch);
+        // // Search functionality
+        // document.getElementById('searchButton').addEventListener('click', performSearch);
 
-        document.getElementById('searchInput').addEventListener('keypress', function (event) {
-            if (event.key === 'Enter') {
-                performSearch();
-            }
-        });
+        // document.getElementById('searchInput').addEventListener('keypress', function (event) {
+        //     if (event.key === 'Enter') {
+        //         performSearch();
+        //     }
+        // });
 
-        function performSearch() {
-            const query = document.getElementById('searchInput').value.trim().toLowerCase();
-            let filteredPlaylist = [];
+        // function performSearch() {
+        //     const query = document.getElementById('searchInput').value.trim().toLowerCase();
+        //     let filteredPlaylist = [];
 
-            // Iterate over all playlists
-            Object.values(playlists).forEach(playlist => {
-                // Filter songs in each playlist based on the search query
-                const filteredSongs = playlist.filter(song => song.name.toLowerCase().includes(query));
-                // Concatenate filtered songs to the filteredPlaylist array
-                filteredPlaylist = filteredPlaylist.concat(filteredSongs);
-            });
+        //     // Iterate over all playlists
+        //     Object.values(playlists).forEach(playlist => {
+        //         // Filter songs in each playlist based on the search query
+        //         const filteredSongs = playlist.filter(song => song.name.toLowerCase().includes(query));
+        //         // Concatenate filtered songs to the filteredPlaylist array
+        //         filteredPlaylist = filteredPlaylist.concat(filteredSongs);
+        //     });
 
-            if (filteredPlaylist.length === 0) {
-                // If no songs match the search query, show a notification
-                alert('Song not found.');
-            } else {
-                // If matching songs are found, update the current playlist, reset index, and play the first song
-                currentPlaylist = filteredPlaylist;
-                currentIndex = 0;
-                playNext();
-            }
-        }
+        //     if (filteredPlaylist.length === 0) {
+        //         // If no songs match the search query, show a notification
+        //         alert('Song not found.');
+        //     } else {
+        //         // If matching songs are found, update the current playlist, reset index, and play the first song
+        //         currentPlaylist = filteredPlaylist;
+        //         currentIndex = 0;
+        //         playNext();
+        //     }
+        // }
 
-        // JavaScript code for suggestion box
-        document.getElementById('searchInput').addEventListener('input', function () {
-            const query = this.value.trim().toLowerCase();
-            const suggestionBox = document.getElementById('suggestionBox');
-            suggestionBox.innerHTML = ''; // Clear previous suggestions
+        // // JavaScript code for suggestion box
+        // document.getElementById('searchInput').addEventListener('input', function () {
+        //     const query = this.value.trim().toLowerCase();
+        //     const suggestionBox = document.getElementById('suggestionBox');
+        //     suggestionBox.innerHTML = ''; // Clear previous suggestions
 
-            if (query.length === 0) {
-                // Hide suggestion box if query is empty
-                suggestionBox.style.display = 'none';
-                return;
-            }
+        //     if (query.length === 0) {
+        //         // Hide suggestion box if query is empty
+        //         suggestionBox.style.display = 'none';
+        //         return;
+        //     }
 
-            let suggestions = [];
-            // Iterate over all playlists to find matching song names
-            Object.values(playlists).forEach(playlist => {
-                playlist.forEach(song => {
-                    if (song.name.toLowerCase().includes(query)) {
-                        suggestions.push(song);
-                    }
-                });
-            });
+        //     let suggestions = [];
+        //     // Iterate over all playlists to find matching song names
+        //     Object.values(playlists).forEach(playlist => {
+        //         playlist.forEach(song => {
+        //             if (song.name.toLowerCase().includes(query)) {
+        //                 suggestions.push(song);
+        //             }
+        //         });
+        //     });
 
-            if (suggestions.length > 0) {
-                // Display suggestions in the suggestion box
-                suggestionBox.style.display = 'block';
-                suggestions.slice(0, 5).forEach(song => {
-                    const suggestionItem = document.createElement('div');
-                    suggestionItem.textContent = song.name;
-                    suggestionItem.classList.add('suggestion');
-                    suggestionItem.addEventListener('click', function () {
-                        // Play the selected song when clicked
-                        audioPlayer.src = song.src;
-                        audioPlayer.play();
-                        audioName.textContent = ' ' + song.name;
-                        suggestionBox.style.display = 'none'; // Hide suggestion box after selecting
-                    });
-                    suggestionBox.appendChild(suggestionItem);
-                });
-            } else {
-                // Hide suggestion box if no suggestions found
-                suggestionBox.style.display = 'none';
-            }
-        });
+        //     if (suggestions.length > 0) {
+        //         // Display suggestions in the suggestion box
+        //         suggestionBox.style.display = 'block';
+        //         suggestions.slice(0, 5).forEach(song => {
+        //             const suggestionItem = document.createElement('div');
+        //             suggestionItem.textContent = song.name;
+        //             suggestionItem.classList.add('suggestion');
+        //             suggestionItem.addEventListener('click', function () {
+        //                 // Play the selected song when clicked
+        //                 audioPlayer.src = song.src;
+        //                 audioPlayer.play();
+        //                 audioName.textContent = ' ' + song.name;
+        //                 suggestionBox.style.display = 'none'; // Hide suggestion box after selecting
+        //             });
+        //             suggestionBox.appendChild(suggestionItem);
+        //         });
+        //     } else {
+        //         // Hide suggestion box if no suggestions found
+        //         suggestionBox.style.display = 'none';
+        //     }
+        // });
 
 
 
@@ -481,6 +481,7 @@
         });
         // Lighting end
 
+        
     </script>
 </body>
 
