@@ -64,7 +64,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* border: 1px solid black; */
+            /* border: 1px solid black;  */
             height: 50px;
             margin-top: 3rem;
             width: auto;
@@ -108,14 +108,14 @@
 
         #prevButton,
         #nextButton {
-            height: 8rem;
-            width: 8rem;
-            margin-left: 150px;
-            margin-right: 150px;
+            height: 6rem;
+            width: 6rem;
+            margin-left: 200px;
+            margin-right: 200px;
             background-color: #e8622b;
             border: 1px solid #e8622b;
             color: white;
-            font-size: 5rem;
+            font-size: 4rem;
             margin-top: 120px;
             border-radius: 50%;
             transition: box-shadow 0.3s ease-in-out;
@@ -135,7 +135,7 @@
         }
 
         #playlistSelect {
-            /* margin-left: 2rem;  */
+            /* margin-left: 2rem;*/
             height: 4.5rem;
             width: 23rem;
             font-size: 2.5rem;
@@ -185,18 +185,32 @@
             background: linear-gradient(45deg, #e8622b, #e3b04c);
             color: white;
         }
-        #playlistDisplay{
+
+        #playlistDisplay {
             display: flex;
-            justify-content: center;
-            flex-direction: column;
+            /* justify-content: center; */
             align-items: center;
+            flex-direction: column;
             margin-right: auto;
             margin-left: auto;
-            margin-top: 8rem;
-            width: 20rem;
-            height: auto;
+            margin-top: -3rem;
+            width: 24rem;
+            height: 15rem;
             font-size: 2.7rem;
-            border: 1px solid black;
+            /* border: 1px solid black; */
+            overflow: scroll;
+            cursor: pointer;
+            box-shadow: inset 0px 0px 20px 0px rgb(0, 0, 0);
+        }
+
+        #playlistDisplay div {
+            border-bottom: 1px solid #a4a4a4;
+            display: flex;
+            margin-top: 5px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            color: #e8622b;
         }
     </style>
 </head>
@@ -237,7 +251,7 @@
     </div>
     <div id="playlistDisplay"></div> <!-- New div for playlist display -->
     <script>
-         // window.addEventListener("contextmenu", function (e) {
+        // window.addEventListener("contextmenu", function (e) {
         //        e.preventDefault();
         //     });
         const playlists = {
@@ -361,18 +375,18 @@
         // Lighting end
 
         // Function to update the playlist display
-function updatePlaylistDisplay() {
-    playlistDisplay.innerHTML = ''; // Clear the current content
-    currentPlaylist.forEach((song, index) => {
-        const songElement = document.createElement('div');
-        songElement.textContent = song.name;
-        songElement.addEventListener('click', () => {
-            currentIndex = index; // Update the current index to match the clicked song
-            playNext(); // Play the clicked song
-        });
-        playlistDisplay.appendChild(songElement);
-    });
-}
+        function updatePlaylistDisplay() {
+            playlistDisplay.innerHTML = ''; // Clear the current content
+            currentPlaylist.forEach((song, index) => {
+                const songElement = document.createElement('div');
+                songElement.textContent = song.name;
+                songElement.addEventListener('click', () => {
+                    currentIndex = index; // Update the current index to match the clicked song
+                    playNext(); // Play the clicked song
+                });
+                playlistDisplay.appendChild(songElement);
+            });
+        }
 
     </script>
 </body>
