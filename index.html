@@ -186,7 +186,7 @@
             color: white;
         }
 
-         #playlistDisplay {
+        #playlistDisplay {
             display: flex;
             /* justify-content: center; */
             align-items: center;
@@ -208,10 +208,11 @@
             border-bottom: 1px solid #a4a4a4;
             display: flex;
             justify-content: center;
+            text-align: center;
             align-items: center;
             width: 100%;
             color: white;
-           
+
         }
     </style>
 </head>
@@ -264,19 +265,19 @@
             playlist2: [
                 { name: 'Aarti', src: 'Aarti/Aarti.mp3' },
                 { name: 'Jay Ganesh', src: 'Ganpati Aarti/Jay Ganesh.mp3' },
-                 { name: 'Karpur Aarti', src: 'Aarti/Karpur Aarti.mp3' },
+                { name: 'Karpur Aarti', src: 'Aarti/Karpur Aarti.mp3' },
                 // { name: '', src: 'Ganpati Aarti/.mp3' },
             ],
             playlist3: [
                 { name: 'Aarti', src: 'Aarti/Aarti.mp3' },
                 { name: 'Aarti Kunjbihari Ki', src: 'Krishn Aarti/Aarti Kunjbihari Ki.mp3' },
-                 { name: 'Karpur Aarti', src: 'Aarti/Karpur Aarti.mp3' },
+                { name: 'Karpur Aarti', src: 'Aarti/Karpur Aarti.mp3' },
                 // { name: '', src: 'Krishn Aarti/.mp3' },
             ],
             playlist4: [
                 { name: 'Aarti', src: 'Aarti/Aarti.mp3' },
                 { name: 'Ram Lalla Aarti', src: 'Ram Aarti/Ram Lalla Aarti.mp3' },
-                 { name: 'Karpur Aarti', src: 'Aarti/Karpur Aarti.mp3' },
+                { name: 'Karpur Aarti', src: 'Aarti/Karpur Aarti.mp3' },
                 // { name: '', src: 'Ram Aarti/.mp3' },
             ],
             playlist5: [
@@ -313,13 +314,7 @@
             }
         }
 
-        // Update the current playlist when the dropdown selection changes
-        playlistSelect.addEventListener('change', function () {
-            currentPlaylist = playlists[this.value];
-            currentIndex = 0;
-            playNext();
-            updatePlaylistDisplay(); // Update the playlist display when the playlist changes
-        });
+
 
         // Play the first audio when the page loads
         playNext();
@@ -331,18 +326,6 @@
         document.getElementById('nextButton').addEventListener('click', playNext);
         document.getElementById('prevButton').addEventListener('click', playPrevious);
 
-        // Function to update the playlist display
-        function updatePlaylistDisplay() {
-            playlistDisplay.innerHTML = ''; // Clear the current content
-            currentPlaylist.forEach(song => {
-                const songElement = document.createElement('div');
-                songElement.textContent = song.name;
-                playlistDisplay.appendChild(songElement);
-            });
-        }
-
-        // Call the updatePlaylistDisplay function initially to populate the playlist display
-        updatePlaylistDisplay();
 
         // Lighting start
         const borderElement = document.querySelector('.musicPlayer');
@@ -379,6 +362,18 @@
         });
         // Lighting end
 
+
+        // PlaylistDisplay start
+
+        // Update the current playlist when the dropdown selection changes
+        playlistSelect.addEventListener('change', function () {
+            currentPlaylist = playlists[this.value];
+            currentIndex = 0;
+            playNext();
+            updatePlaylistDisplay(); // Update the playlist display when the playlist changes
+        });
+        // Call the updatePlaylistDisplay function initially to populate the playlist display
+        updatePlaylistDisplay();
         // Function to update the playlist display
         function updatePlaylistDisplay() {
             playlistDisplay.innerHTML = ''; // Clear the current content
@@ -392,7 +387,7 @@
                 playlistDisplay.appendChild(songElement);
             });
         }
-
+        // PlaylistDisplay ends
     </script>
 </body>
 
